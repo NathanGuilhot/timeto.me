@@ -46,8 +46,11 @@ data class IntervalDb(
             db.intervalQueries.selectAsc(limit = limit.toLong()).asListFlow { toDb() }
 
         suspend fun selectDesc(limit: Int): List<IntervalDb> = dbIo {
-            db.intervalQueries.selectDesc(limit.toLong()).asList { toDb() }
+            selectDescSync(limit)
         }
+
+        fun selectDescSync(limit: Int): List<IntervalDb> =
+            db.intervalQueries.selectDesc(limit.toLong()).asList { toDb() }
 
         fun selectDescFlow(limit: Int = Int.MAX_VALUE): Flow<List<IntervalDb>> =
             db.intervalQueries.selectDesc(limit.toLong()).asListFlow { toDb() }

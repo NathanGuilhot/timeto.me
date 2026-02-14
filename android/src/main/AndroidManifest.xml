@@ -36,6 +36,17 @@
             android:name=".TimerNotificationReceiver"
             android:enabled="true"/>
 
+        <receiver
+            android:name=".TimerWidgetProvider"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/timer_widget_info" />
+        </receiver>
+
     </application>
 
 </manifest>
